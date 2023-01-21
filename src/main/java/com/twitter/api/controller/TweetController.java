@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.twitter.api.dto.TweetDTO;
+import com.twitter.api.dto.TweetPostDTO;
 
 @RestController
 @RequestMapping("/api/tweets")
 public class TweetController {
 
   @PostMapping
-  public void create(@RequestBody TweetDTO req) {
+  public void create(@RequestBody TweetPostDTO req) {
 
   }
 }
