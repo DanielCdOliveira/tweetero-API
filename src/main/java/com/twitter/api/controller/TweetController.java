@@ -26,10 +26,11 @@ public class TweetController {
   private UserRepository userRepository;
 
   @PostMapping
-  public void create(@RequestBody TweetPostDTO req) {
+  public String create(@RequestBody TweetPostDTO req) {
     User user = userRepository.findByUsernameIs(req.username()).get(0);
     TweetDTO tweet = new TweetDTO(req.username(), user.getAvatar(), req.tweet());
     tweetRepository.save(new Tweet(tweet));
+    return "OK";
   }
 
   @GetMapping("/{username}")

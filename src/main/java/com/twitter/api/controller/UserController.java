@@ -20,9 +20,10 @@ public class UserController {
   private UserRepository repository;
 
   @PostMapping("/sign-up")
-  public void create(@RequestBody UserDTO req) {
+  public String create(@RequestBody UserDTO req) {
     System.out.println(req);
     repository.save(new User(req));
+    return "OK";
   }
 
   @GetMapping
