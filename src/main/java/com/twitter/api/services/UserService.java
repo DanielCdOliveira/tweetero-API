@@ -15,4 +15,8 @@ public class UserService {
   public void createUser(UserDTO newUser) {
     userRepository.save(new User(newUser));
   }
+
+  public User getUser(String username) {
+    return userRepository.findByUsernameIs(username).get(0);
+  }
 }

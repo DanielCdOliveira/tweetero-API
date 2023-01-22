@@ -35,6 +35,7 @@ public class TweetController {
 
   @GetMapping
   public ResponseEntity<Page<Tweet>> getLastTweets(@RequestParam(value = "page") int page) {
+    page -= 1;
     return ResponseEntity.ok().body(tweetService.getLastTweets(page));
   }
 
