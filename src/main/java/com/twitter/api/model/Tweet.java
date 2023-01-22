@@ -1,7 +1,5 @@
 package com.twitter.api.model;
 
-import com.twitter.api.dto.TweetDTO;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Tweet {
-  public Tweet(TweetDTO data) {
-    this.username = data.username();
-    this.avatar = data.avatar();
-    this.text = data.text();
+  public Tweet(String username, String avatar, String text) {
+    this.username = username;
+    this.avatar = avatar;
+    this.text = text;
   }
 
   @Id
