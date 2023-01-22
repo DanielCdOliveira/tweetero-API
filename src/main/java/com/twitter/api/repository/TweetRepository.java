@@ -8,5 +8,4 @@ import com.twitter.api.model.Tweet;
 
 public interface TweetRepository extends JpaRepository<Tweet, Long> {
   List<Tweet> findByUsernameIs(String name);
-
 }

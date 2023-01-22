@@ -12,22 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.twitter.api.dto.UserDTO;
 import com.twitter.api.model.User;
 import com.twitter.api.repository.UserRepository;
+import com.twitter.api.services.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
   @Autowired
-  private UserRepository repository;
+  UserService userService;
 
   @PostMapping("/sign-up")
   public String create(@RequestBody UserDTO req) {
-    System.out.println(req);
-    repository.save(new User(req));
+    userService.createUser(req);
     return "OK";
-  }
-
-  @GetMapping
-  public List<User> listAll() {
-    return repository.findAll();
   }
 }
