@@ -10,25 +10,25 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-import com.twitter.api.dto.TweetPostDTO;
+import com.twitter.api.interfaces.PostTweet;
 import com.twitter.api.model.Tweet;
 import com.twitter.api.model.User;
 import com.twitter.api.repository.TweetRepository;
+import com.twitter.api.repository.UserRepository;
 
 @Service
 public class TweetService {
   @Autowired
   TweetRepository tweetRepository;
   @Autowired
-  UserService userservice;
+  UserRepository userRepository;
 
-  public String createTweet(TweetPostDTO tweet) {
-    User user = userservice.getUser(tweet.username());
+  public String createTweet(PostTweet postTweet) {
+    User user = userRepository.findByUsernameIs(postTweet.getUsername());
     if (user == null) {
       return "error";
     } else {
-      Tweet newTweet = new Tweet(tweet.username(), user.getAvatar(), tweet.tweet());
+      Tweet newTweet = new Tweet(postTweet.getUsername(), user.getAvatar(), postTweet.getText());
       tweetRepository.save(newTweet);
       return "OK";
     }
